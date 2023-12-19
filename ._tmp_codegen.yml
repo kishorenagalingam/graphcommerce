@@ -1,0 +1,91 @@
+generates:
+  node_modules/@graphcommerce/graphql/generated/types.ts:
+    schema:
+      - .mesh/schema.graphql
+    plugins:
+      - typescript-apollo-client-helpers
+      - add
+    config:
+      enumsAsTypes: true
+      content: /* eslint-disable */
+  node_modules/@graphcommerce/graphql/generated/fragments.json:
+    schema:
+      - .mesh/schema.graphql
+    plugins:
+      - fragment-matcher
+  .: &a1
+    schema:
+      - .mesh/schema.graphql
+    documents:
+      - components/**/*.graphql
+      - graphql/**/*.graphql
+      - node_modules/@graphcommerce/cli/**/*.graphql
+      - node_modules/@graphcommerce/hygraph-cli/**/*.graphql
+      - node_modules/@graphcommerce/demo-magento-graphcommerce/**/*.graphql
+      - node_modules/@graphcommerce/googleanalytics/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart-shipping-method/**/*.graphql
+      - node_modules/@graphcommerce/googlerecaptcha/**/*.graphql
+      - node_modules/@graphcommerce/googletagmanager/**/*.graphql
+      - node_modules/@graphcommerce/hygraph-dynamic-rows/**/*.graphql
+      - node_modules/@graphcommerce/graphcms-ui/**/*.graphql
+      - node_modules/@graphcommerce/lingui-next/**/*.graphql
+      - node_modules/@graphcommerce/next-config/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart-billing-address/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart-checkout/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart-coupon/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart-email/**/*.graphql
+      - node_modules/@graphcommerce/magento-cms/**/*.graphql
+      - node_modules/@graphcommerce/magento-compare/**/*.graphql
+      - node_modules/@graphcommerce/magento-newsletter/**/*.graphql
+      - node_modules/@graphcommerce/magento-payment-included/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart-payment-method/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart-shipping-address/**/*.graphql
+      - node_modules/@graphcommerce/magento-product-bundle/**/*.graphql
+      - node_modules/@graphcommerce/magento-product-downloadable/**/*.graphql
+      - node_modules/@graphcommerce/magento-product-grouped/**/*.graphql
+      - node_modules/@graphcommerce/magento-product-virtual/**/*.graphql
+      - node_modules/@graphcommerce/magento-review/**/*.graphql
+      - node_modules/@graphcommerce/magento-search/**/*.graphql
+      - node_modules/@graphcommerce/magento-wishlist/**/*.graphql
+      - node_modules/@graphcommerce/magento-product-configurable/**/*.graphql
+      - node_modules/@graphcommerce/magento-product-simple/**/*.graphql
+      - node_modules/@graphcommerce/magento-category/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart-items/**/*.graphql
+      - node_modules/@graphcommerce/magento-product/**/*.graphql
+      - node_modules/@graphcommerce/magento-cart/**/*.graphql
+      - node_modules/@graphcommerce/magento-customer/**/*.graphql
+      - node_modules/@graphcommerce/magento-store/**/*.graphql
+      - node_modules/@graphcommerce/magento-graphql/**/*.graphql
+      - node_modules/@graphcommerce/ecommerce-ui/**/*.graphql
+      - node_modules/@graphcommerce/react-hook-form/**/*.graphql
+      - node_modules/@graphcommerce/next-ui/**/*.graphql
+      - node_modules/@graphcommerce/framer-scroller/**/*.graphql
+      - node_modules/@graphcommerce/framer-next-pages/**/*.graphql
+      - node_modules/@graphcommerce/image/**/*.graphql
+      - node_modules/@graphcommerce/framer-utils/**/*.graphql
+      - node_modules/@graphcommerce/graphql-mesh/**/*.graphql
+      - node_modules/@graphcommerce/graphql/**/*.graphql
+      - node_modules/@graphcommerce/graphql-codegen-relay-optimizer-plugin/**/*.graphql
+      - node_modules/@graphcommerce/graphql-codegen-near-operation-file/**/*.graphql
+      - node_modules/@graphcommerce/prettier-config-pwa/**/*.graphql
+      - node_modules/@graphcommerce/eslint-config-pwa/**/*.graphql
+      - node_modules/@graphcommerce/typescript-config-pwa/**/*.graphql
+    plugins:
+      - "@graphcommerce/graphql-codegen-relay-optimizer-plugin"
+      - typed-document-node
+      - typescript-operations
+      - add
+    preset: "@graphcommerce/graphql-codegen-near-operation-file"
+    presetConfig:
+      extension: .gql.ts
+      baseTypesPath: ~@graphcommerce/graphql-mesh/.mesh
+      injectables: true
+    config:
+      skipTypename: true
+      namingConvention: keep
+      dedupeOperationSuffix: true
+      arrayInputCoercion: false
+      content: /* eslint-disable */
+  node_modules/@graphcommerce: *a1
+watchConfig:
+  usePolling: false

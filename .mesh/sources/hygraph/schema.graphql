@@ -1,0 +1,3455 @@
+schema {
+  query: Query
+}
+
+type Aggregate {
+  count: Int!
+}
+
+"""Asset system model"""
+type Asset implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The mime type of the file"""
+  mimeType: String
+  """The file size"""
+  size: Float
+  """The file width"""
+  width: Float
+  """The height of the file"""
+  height: Float
+  """The file name"""
+  fileName: String!
+  """The file handle"""
+  handle: String!
+  """The unique identifier"""
+  id: ID!
+  alt: String
+  assetRowHeroBanner(where: RowHeroBannerWhereInput, orderBy: RowHeroBannerOrderByInput, skip: Int, first: Int): [RowHeroBanner!]!
+  rowSpecialBannerAsset(where: RowSpecialBannerWhereInput, orderBy: RowSpecialBannerOrderByInput, skip: Int, first: Int): [RowSpecialBanner!]!
+  assetRowProduct(where: RowProductWhereInput, orderBy: RowProductOrderByInput, skip: Int, first: Int): [RowProduct!]!
+  assetPage(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, first: Int): [Page!]!
+  assetPageLink(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+  """Get the url for the asset with provided transformations applied."""
+  url(transformation: AssetTransformationInput): String!
+}
+
+"""Transformations for Assets"""
+input AssetTransformationInput {
+  image: ImageTransformationInput
+  document: DocumentTransformationInput
+  """Pass true if you want to validate the passed transformation parameters"""
+  validateOptions: Boolean = false
+}
+
+"""Identifies documents"""
+input AssetWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [AssetWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [AssetWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [AssetWhereInput!]
+  mimeType: String
+  """Any other value that exists and is not equal to the given value."""
+  mimeType_not: String
+  """All values that are contained in given list."""
+  mimeType_in: [String]
+  """All values that are not contained in given list."""
+  mimeType_not_in: [String]
+  """All values containing the given string."""
+  mimeType_contains: String
+  """All values not containing the given string."""
+  mimeType_not_contains: String
+  """All values starting with the given string."""
+  mimeType_starts_with: String
+  """All values not starting with the given string."""
+  mimeType_not_starts_with: String
+  """All values ending with the given string."""
+  mimeType_ends_with: String
+  """All values not ending with the given string"""
+  mimeType_not_ends_with: String
+  size: Float
+  """Any other value that exists and is not equal to the given value."""
+  size_not: Float
+  """All values that are contained in given list."""
+  size_in: [Float]
+  """All values that are not contained in given list."""
+  size_not_in: [Float]
+  """All values less than the given value."""
+  size_lt: Float
+  """All values less than or equal the given value."""
+  size_lte: Float
+  """All values greater than the given value."""
+  size_gt: Float
+  """All values greater than or equal the given value."""
+  size_gte: Float
+  width: Float
+  """Any other value that exists and is not equal to the given value."""
+  width_not: Float
+  """All values that are contained in given list."""
+  width_in: [Float]
+  """All values that are not contained in given list."""
+  width_not_in: [Float]
+  """All values less than the given value."""
+  width_lt: Float
+  """All values less than or equal the given value."""
+  width_lte: Float
+  """All values greater than the given value."""
+  width_gt: Float
+  """All values greater than or equal the given value."""
+  width_gte: Float
+  height: Float
+  """Any other value that exists and is not equal to the given value."""
+  height_not: Float
+  """All values that are contained in given list."""
+  height_in: [Float]
+  """All values that are not contained in given list."""
+  height_not_in: [Float]
+  """All values less than the given value."""
+  height_lt: Float
+  """All values less than or equal the given value."""
+  height_lte: Float
+  """All values greater than the given value."""
+  height_gt: Float
+  """All values greater than or equal the given value."""
+  height_gte: Float
+  fileName: String
+  """Any other value that exists and is not equal to the given value."""
+  fileName_not: String
+  """All values that are contained in given list."""
+  fileName_in: [String]
+  """All values that are not contained in given list."""
+  fileName_not_in: [String]
+  """All values containing the given string."""
+  fileName_contains: String
+  """All values not containing the given string."""
+  fileName_not_contains: String
+  """All values starting with the given string."""
+  fileName_starts_with: String
+  """All values not starting with the given string."""
+  fileName_not_starts_with: String
+  """All values ending with the given string."""
+  fileName_ends_with: String
+  """All values not ending with the given string"""
+  fileName_not_ends_with: String
+  handle: String
+  """Any other value that exists and is not equal to the given value."""
+  handle_not: String
+  """All values that are contained in given list."""
+  handle_in: [String]
+  """All values that are not contained in given list."""
+  handle_not_in: [String]
+  """All values containing the given string."""
+  handle_contains: String
+  """All values not containing the given string."""
+  handle_not_contains: String
+  """All values starting with the given string."""
+  handle_starts_with: String
+  """All values not starting with the given string."""
+  handle_not_starts_with: String
+  """All values ending with the given string."""
+  handle_ends_with: String
+  """All values not ending with the given string"""
+  handle_not_ends_with: String
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  alt: String
+  """Any other value that exists and is not equal to the given value."""
+  alt_not: String
+  """All values that are contained in given list."""
+  alt_in: [String]
+  """All values that are not contained in given list."""
+  alt_not_in: [String]
+  """All values containing the given string."""
+  alt_contains: String
+  """All values not containing the given string."""
+  alt_not_contains: String
+  """All values starting with the given string."""
+  alt_starts_with: String
+  """All values not starting with the given string."""
+  alt_not_starts_with: String
+  """All values ending with the given string."""
+  alt_ends_with: String
+  """All values not ending with the given string"""
+  alt_not_ends_with: String
+  assetRowHeroBanner_every: RowHeroBannerWhereInput
+  assetRowHeroBanner_some: RowHeroBannerWhereInput
+  assetRowHeroBanner_none: RowHeroBannerWhereInput
+  rowSpecialBannerAsset_every: RowSpecialBannerWhereInput
+  rowSpecialBannerAsset_some: RowSpecialBannerWhereInput
+  rowSpecialBannerAsset_none: RowSpecialBannerWhereInput
+  assetRowProduct_every: RowProductWhereInput
+  assetRowProduct_some: RowProductWhereInput
+  assetRowProduct_none: RowProductWhereInput
+  assetPage_every: PageWhereInput
+  assetPage_some: PageWhereInput
+  assetPage_none: PageWhereInput
+  assetPageLink_every: PageLinkWhereInput
+  assetPageLink_some: PageLinkWhereInput
+  assetPageLink_none: PageLinkWhereInput
+}
+
+"""All of these conditions must match"""
+type ConditionAnd implements Entity {
+  """System stage field"""
+  stage: Stage!
+  """The unique identifier"""
+  id: ID!
+  conditions(skip: Int, first: Int): [ConditionAndconditionsUnion!]!
+}
+
+"""Identifies documents"""
+input ConditionAndWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [ConditionAndWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ConditionAndWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ConditionAndWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  """All values in which the union is empty."""
+  conditions_empty: Boolean
+  """
+  Matches if the modular component contains at least one connection to the item provided to the filter
+  """
+  conditions_some: ConditionAndconditionsUnionWhereInput
+}
+
+union ConditionAndconditionsUnion = ConditionNumber | ConditionOr | ConditionText
+
+input ConditionAndconditionsUnionWhereInput {
+  ConditionNumber: ConditionNumberWhereInput
+  ConditionText: ConditionTextWhereInput
+  ConditionOr: ConditionOrWhereInput
+}
+
+type ConditionNumber implements Entity {
+  """System stage field"""
+  stage: Stage!
+  """The unique identifier"""
+  id: ID!
+  property: String!
+  value: Float!
+  operator: DynamicRowConditionNumberOperator!
+}
+
+"""Identifies documents"""
+input ConditionNumberWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [ConditionNumberWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ConditionNumberWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ConditionNumberWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  property: String
+  """Any other value that exists and is not equal to the given value."""
+  property_not: String
+  """All values that are contained in given list."""
+  property_in: [String]
+  """All values that are not contained in given list."""
+  property_not_in: [String]
+  """All values containing the given string."""
+  property_contains: String
+  """All values not containing the given string."""
+  property_not_contains: String
+  """All values starting with the given string."""
+  property_starts_with: String
+  """All values not starting with the given string."""
+  property_not_starts_with: String
+  """All values ending with the given string."""
+  property_ends_with: String
+  """All values not ending with the given string"""
+  property_not_ends_with: String
+  value: Float
+  """Any other value that exists and is not equal to the given value."""
+  value_not: Float
+  """All values that are contained in given list."""
+  value_in: [Float]
+  """All values that are not contained in given list."""
+  value_not_in: [Float]
+  """All values less than the given value."""
+  value_lt: Float
+  """All values less than or equal the given value."""
+  value_lte: Float
+  """All values greater than the given value."""
+  value_gt: Float
+  """All values greater than or equal the given value."""
+  value_gte: Float
+  operator: DynamicRowConditionNumberOperator
+  """Any other value that exists and is not equal to the given value."""
+  operator_not: DynamicRowConditionNumberOperator
+  """All values that are contained in given list."""
+  operator_in: [DynamicRowConditionNumberOperator]
+  """All values that are not contained in given list."""
+  operator_not_in: [DynamicRowConditionNumberOperator]
+}
+
+"""One of these conditions must match"""
+type ConditionOr implements Entity {
+  """System stage field"""
+  stage: Stage!
+  """The unique identifier"""
+  id: ID!
+  conditions(skip: Int, first: Int): [ConditionOrconditionsUnion!]!
+}
+
+"""Identifies documents"""
+input ConditionOrWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [ConditionOrWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ConditionOrWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ConditionOrWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  """All values in which the union is empty."""
+  conditions_empty: Boolean
+  """
+  Matches if the modular component contains at least one connection to the item provided to the filter
+  """
+  conditions_some: ConditionOrconditionsUnionWhereInput
+}
+
+union ConditionOrconditionsUnion = ConditionNumber | ConditionText
+
+input ConditionOrconditionsUnionWhereInput {
+  ConditionNumber: ConditionNumberWhereInput
+  ConditionText: ConditionTextWhereInput
+}
+
+type ConditionText implements Entity {
+  """System stage field"""
+  stage: Stage!
+  """The unique identifier"""
+  id: ID!
+  property: String!
+  value: String!
+}
+
+"""Identifies documents"""
+input ConditionTextWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [ConditionTextWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ConditionTextWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ConditionTextWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  property: String
+  """Any other value that exists and is not equal to the given value."""
+  property_not: String
+  """All values that are contained in given list."""
+  property_in: [String]
+  """All values that are not contained in given list."""
+  property_not_in: [String]
+  """All values containing the given string."""
+  property_contains: String
+  """All values not containing the given string."""
+  property_not_contains: String
+  """All values starting with the given string."""
+  property_starts_with: String
+  """All values not starting with the given string."""
+  property_not_starts_with: String
+  """All values ending with the given string."""
+  property_ends_with: String
+  """All values not ending with the given string"""
+  property_not_ends_with: String
+  value: String
+  """Any other value that exists and is not equal to the given value."""
+  value_not: String
+  """All values that are contained in given list."""
+  value_in: [String]
+  """All values that are not contained in given list."""
+  value_not_in: [String]
+  """All values containing the given string."""
+  value_contains: String
+  """All values not containing the given string."""
+  value_not_contains: String
+  """All values starting with the given string."""
+  value_starts_with: String
+  """All values not starting with the given string."""
+  value_not_starts_with: String
+  """All values ending with the given string."""
+  value_ends_with: String
+  """All values not ending with the given string"""
+  value_not_ends_with: String
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the date-timeformat outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representationof dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+enum DocumentFileTypes {
+  jpg
+  odp
+  ods
+  odt
+  png
+  svg
+  txt
+  webp
+  docx
+  pdf
+  html
+  doc
+  xlsx
+  xls
+  pptx
+  ppt
+}
+
+input DocumentOutputInput {
+  """
+  Transforms a document into a desired file type.
+  See this matrix for format support:
+  
+  PDF:	jpg, odp, ods, odt, png, svg, txt, and webp
+  DOC:	docx, html, jpg, odt, pdf, png, svg, txt, and webp
+  DOCX:	doc, html, jpg, odt, pdf, png, svg, txt, and webp
+  ODT:	doc, docx, html, jpg, pdf, png, svg, txt, and webp
+  XLS:	jpg, pdf, ods, png, svg, xlsx, and webp
+  XLSX:	jpg, pdf, ods, png, svg, xls, and webp
+  ODS:	jpg, pdf, png, xls, svg, xlsx, and webp
+  PPT:	jpg, odp, pdf, png, svg, pptx, and webp
+  PPTX:	jpg, odp, pdf, png, svg, ppt, and webp
+  ODP:	jpg, pdf, png, ppt, svg, pptx, and webp
+  BMP:	jpg, odp, ods, odt, pdf, png, svg, and webp
+  GIF:	jpg, odp, ods, odt, pdf, png, svg, and webp
+  JPG:	jpg, odp, ods, odt, pdf, png, svg, and webp
+  PNG:	jpg, odp, ods, odt, pdf, png, svg, and webp
+  WEBP:	jpg, odp, ods, odt, pdf, png, svg, and webp
+  TIFF:	jpg, odp, ods, odt, pdf, png, svg, and webp
+  AI:	    jpg, odp, ods, odt, pdf, png, svg, and webp
+  PSD:	jpg, odp, ods, odt, pdf, png, svg, and webp
+  SVG:	jpg, odp, ods, odt, pdf, png, and webp
+  HTML:	jpg, odt, pdf, svg, txt, and webp
+  TXT:	jpg, html, odt, pdf, svg, and webp
+  """
+  format: DocumentFileTypes
+}
+
+"""Transformations for Documents"""
+input DocumentTransformationInput {
+  """Changes the output for the file."""
+  output: DocumentOutputInput
+}
+
+"""
+Dynamic rows allow you to add specific Row models to pages based on the properties of the page
+"""
+type DynamicRow implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """The unique identifier"""
+  id: ID!
+  """Only used for internal reference"""
+  internalName: String!
+  """One of these conditions must match"""
+  conditions(skip: Int, first: Int): [DynamicRowconditionsUnion!]!
+  """Where will the row be placed relative to the target"""
+  placement: DynamicRowPlacement!
+  rows(skip: Int, first: Int): [Union_rows_dynamicRows!]!
+  """
+  Optional: When the target is left blank it will place the Dynamic Row on the start or end.
+  """
+  target: DynamicRowTarget
+  """This field is deprecated. Use Rows instead."""
+  row: Union_row_dynamicRow
+}
+
+enum DynamicRowConditionNumberOperator {
+  GTE
+  LTE
+  EQUAL
+}
+
+"""A connection to a list of items."""
+type DynamicRowConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [DynamicRowEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type DynamicRowEdge {
+  """The item at the end of the edge."""
+  node: DynamicRow!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum DynamicRowOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  publishedAt_ASC
+  publishedAt_DESC
+  internalName_ASC
+  internalName_DESC
+  placement_ASC
+  placement_DESC
+}
+
+enum DynamicRowPlacement {
+  BEFORE
+  AFTER
+  REPLACE
+}
+
+union DynamicRowTarget = RowBlogContent | RowButtonLinkList | RowColumnOne | RowColumnThree | RowColumnTwo | RowContentLinks | RowHeroBanner | RowLinks | RowProduct | RowQuote | RowServiceOptions | RowSpecialBanner
+
+input DynamicRowTargetWhereInput {
+  RowServiceOptions: RowServiceOptionsWhereInput
+  RowQuote: RowQuoteWhereInput
+  RowColumnOne: RowColumnOneWhereInput
+  RowContentLinks: RowContentLinksWhereInput
+  RowButtonLinkList: RowButtonLinkListWhereInput
+  RowProduct: RowProductWhereInput
+  RowSpecialBanner: RowSpecialBannerWhereInput
+  RowLinks: RowLinksWhereInput
+  RowHeroBanner: RowHeroBannerWhereInput
+  RowColumnTwo: RowColumnTwoWhereInput
+  RowColumnThree: RowColumnThreeWhereInput
+  RowBlogContent: RowBlogContentWhereInput
+}
+
+"""Identifies documents"""
+input DynamicRowWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [DynamicRowWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [DynamicRowWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DynamicRowWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  internalName: String
+  """Any other value that exists and is not equal to the given value."""
+  internalName_not: String
+  """All values that are contained in given list."""
+  internalName_in: [String]
+  """All values that are not contained in given list."""
+  internalName_not_in: [String]
+  """All values containing the given string."""
+  internalName_contains: String
+  """All values not containing the given string."""
+  internalName_not_contains: String
+  """All values starting with the given string."""
+  internalName_starts_with: String
+  """All values not starting with the given string."""
+  internalName_not_starts_with: String
+  """All values ending with the given string."""
+  internalName_ends_with: String
+  """All values not ending with the given string"""
+  internalName_not_ends_with: String
+  """All values in which the union is empty."""
+  conditions_empty: Boolean
+  """
+  Matches if the modular component contains at least one connection to the item provided to the filter
+  """
+  conditions_some: DynamicRowconditionsUnionWhereInput
+  placement: DynamicRowPlacement
+  """Any other value that exists and is not equal to the given value."""
+  placement_not: DynamicRowPlacement
+  """All values that are contained in given list."""
+  placement_in: [DynamicRowPlacement]
+  """All values that are not contained in given list."""
+  placement_not_in: [DynamicRowPlacement]
+  """All values in which the union is empty"""
+  rows_empty: Boolean
+  """
+  Matches if the union contains at least one connection to the provided item to the filter
+  """
+  rows_some: Union_rows_dynamicRowsWhereInput
+  """All values in which the union is empty"""
+  target_empty: Boolean
+  """All values in which the union is connected to the given models"""
+  target: DynamicRowTargetWhereInput
+  """All values in which the union is empty"""
+  row_empty: Boolean
+  """All values in which the union is connected to the given models"""
+  row: Union_row_dynamicRowWhereInput
+}
+
+"""References DynamicRow record uniquely"""
+input DynamicRowWhereUniqueInput {
+  id: ID
+  internalName: String
+}
+
+union DynamicRowconditionsUnion = ConditionAnd | ConditionNumber | ConditionText
+
+input DynamicRowconditionsUnionWhereInput {
+  ConditionAnd: ConditionAndWhereInput
+  ConditionNumber: ConditionNumberWhereInput
+  ConditionText: ConditionTextWhereInput
+}
+
+"""An object with an ID"""
+interface Entity {
+  """The id of the object."""
+  id: ID!
+  """The Stage of an object"""
+  stage: Stage!
+}
+
+"""
+This enumeration holds all typenames that implement the Entity interface. Components and models implement the Entity interface.
+"""
+enum EntityTypeName {
+  RowServiceOptions
+  Footer
+  RowQuote
+  Usps
+  Page
+  """Asset system model"""
+  Asset
+  """User system model"""
+  User
+  """Scheduled Operation system model"""
+  ScheduledOperation
+  """Scheduled Release system model"""
+  ScheduledRelease
+  RowContentLinks
+  """
+  Dynamic rows allow you to add specific Row models to pages based on the properties of the page
+  """
+  DynamicRow
+  RowButtonLinkList
+  PageLink
+  RowProduct
+  RowSpecialBanner
+  RowLinks
+  RowHeroBanner
+  RowColumnTwo
+  RowColumnThree
+  RowColumnOne
+  RowBlogContent
+  """All of these conditions must match"""
+  ConditionAnd
+  ConditionNumber
+  """One of these conditions must match"""
+  ConditionOr
+  ConditionText
+}
+
+"""Allows to specify input to query models and components directly"""
+input EntityWhereInput {
+  """The ID of an object"""
+  id: ID!
+  """The Type name of an object"""
+  typename: EntityTypeName!
+  stage: Stage!
+  locale: Locale
+}
+
+type Footer implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  copyright: String
+  socialLinks(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+  legalLinks(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+}
+
+"""A connection to a list of items."""
+type FooterConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [FooterEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type FooterEdge {
+  """The item at the end of the edge."""
+  node: Footer!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum FooterOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+  copyright_ASC
+  copyright_DESC
+}
+
+"""Identifies documents"""
+input FooterWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [FooterWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [FooterWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [FooterWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  copyright: String
+  """Any other value that exists and is not equal to the given value."""
+  copyright_not: String
+  """All values that are contained in given list."""
+  copyright_in: [String]
+  """All values that are not contained in given list."""
+  copyright_not_in: [String]
+  """All values containing the given string."""
+  copyright_contains: String
+  """All values not containing the given string."""
+  copyright_not_contains: String
+  """All values starting with the given string."""
+  copyright_starts_with: String
+  """All values not starting with the given string."""
+  copyright_not_starts_with: String
+  """All values ending with the given string."""
+  copyright_ends_with: String
+  """All values not ending with the given string"""
+  copyright_not_ends_with: String
+  socialLinks_every: PageLinkWhereInput
+  socialLinks_some: PageLinkWhereInput
+  socialLinks_none: PageLinkWhereInput
+  legalLinks_every: PageLinkWhereInput
+  legalLinks_some: PageLinkWhereInput
+  legalLinks_none: PageLinkWhereInput
+}
+
+"""References Footer record uniquely"""
+input FooterWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+enum ImageFit {
+  """
+  Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio.
+  """
+  clip
+  """
+  Resizes the image to fit the specified parameters exactly by removing any parts of the image that don't fit within the boundaries.
+  """
+  crop
+  """
+  Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method.
+  """
+  scale
+  """
+  Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size.
+  """
+  max
+}
+
+input ImageResizeInput {
+  """
+  The width in pixels to resize the image to. The value must be an integer from 1 to 10000.
+  """
+  width: Int
+  """
+  The height in pixels to resize the image to. The value must be an integer from 1 to 10000.
+  """
+  height: Int
+  """The default value for the fit parameter is fit:clip."""
+  fit: ImageFit
+}
+
+"""Transformations for Images"""
+input ImageTransformationInput {
+  """Resizes the image"""
+  resize: ImageResizeInput
+}
+
+"""Raw JSON value"""
+scalar Json
+
+"""Locale system enumeration"""
+enum Locale {
+  """System locale"""
+  en_us
+  nl
+}
+
+enum MetaRobots {
+  INDEX_FOLLOW
+  INDEX_NOFOLLOW
+  NOINDEX_FOLLOW
+  NOINDEX_NOFOLLOW
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+  """The Stage of an object"""
+  stage: Stage!
+}
+
+type Page implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  url: String!
+  title: String
+  metaTitle: String!
+  metaDescription: String!
+  date: DateTime
+  author: String
+  """9:6 for general usage"""
+  asset: Asset
+  relatedPages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, first: Int): [Page!]!
+  childPages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, first: Int): [Page!]!
+  rowButtonLinkLists(where: RowButtonLinkListWhereInput, orderBy: RowButtonLinkListOrderByInput, skip: Int, first: Int): [RowButtonLinkList!]!
+  metaRobots: MetaRobots!
+  content(skip: Int, first: Int): [PageContent!]!
+}
+
+"""A connection to a list of items."""
+type PageConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [PageEdge!]!
+  aggregate: Aggregate!
+}
+
+union PageContent = RowBlogContent | RowButtonLinkList | RowColumnOne | RowColumnThree | RowColumnTwo | RowContentLinks | RowHeroBanner | RowLinks | RowProduct | RowQuote | RowServiceOptions | RowSpecialBanner
+
+input PageContentWhereInput {
+  RowServiceOptions: RowServiceOptionsWhereInput
+  RowButtonLinkList: RowButtonLinkListWhereInput
+  RowContentLinks: RowContentLinksWhereInput
+  RowQuote: RowQuoteWhereInput
+  RowProduct: RowProductWhereInput
+  RowSpecialBanner: RowSpecialBannerWhereInput
+  RowHeroBanner: RowHeroBannerWhereInput
+  RowColumnTwo: RowColumnTwoWhereInput
+  RowColumnThree: RowColumnThreeWhereInput
+  RowColumnOne: RowColumnOneWhereInput
+  RowBlogContent: RowBlogContentWhereInput
+  RowLinks: RowLinksWhereInput
+}
+
+"""An edge in a connection."""
+type PageEdge {
+  """The item at the end of the edge."""
+  node: Page!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+  """Number of items in the current page."""
+  pageSize: Int
+}
+
+type PageLink implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  title: String!
+  description: RichText
+  url: String!
+  rowHeroBanners(where: RowHeroBannerWhereInput, orderBy: RowHeroBannerOrderByInput, skip: Int, first: Int): [RowHeroBanner!]!
+  rowProductMultiple(where: RowProductWhereInput, orderBy: RowProductOrderByInput, skip: Int, first: Int): [RowProduct!]!
+  rowSpecialBanners(where: RowSpecialBannerWhereInput, orderBy: RowSpecialBannerOrderByInput, skip: Int, first: Int): [RowSpecialBanner!]!
+  rowLinks(where: RowLinksWhereInput, orderBy: RowLinksOrderByInput, skip: Int, first: Int): [RowLinks!]!
+  footerSocialLinks(where: FooterWhereInput, orderBy: FooterOrderByInput, skip: Int, first: Int): [Footer!]!
+  uspsMultiple(where: UspsWhereInput, orderBy: UspsOrderByInput, skip: Int, first: Int): [Usps!]!
+  rowServiceOptionsMultiple(where: RowServiceOptionsWhereInput, orderBy: RowServiceOptionsOrderByInput, skip: Int, first: Int): [RowServiceOptions!]!
+  rowContentLinks: RowContentLinks
+  footerLegalLinks(where: FooterWhereInput, orderBy: FooterOrderByInput, skip: Int, first: Int): [Footer!]!
+  asset: Asset
+}
+
+"""A connection to a list of items."""
+type PageLinkConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [PageLinkEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type PageLinkEdge {
+  """The item at the end of the edge."""
+  node: PageLink!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum PageLinkOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  url_ASC
+  url_DESC
+}
+
+"""Identifies documents"""
+input PageLinkWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [PageLinkWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [PageLinkWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageLinkWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  title: String
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String]
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+  url: String
+  """Any other value that exists and is not equal to the given value."""
+  url_not: String
+  """All values that are contained in given list."""
+  url_in: [String]
+  """All values that are not contained in given list."""
+  url_not_in: [String]
+  """All values containing the given string."""
+  url_contains: String
+  """All values not containing the given string."""
+  url_not_contains: String
+  """All values starting with the given string."""
+  url_starts_with: String
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+  """All values ending with the given string."""
+  url_ends_with: String
+  """All values not ending with the given string"""
+  url_not_ends_with: String
+  rowHeroBanners_every: RowHeroBannerWhereInput
+  rowHeroBanners_some: RowHeroBannerWhereInput
+  rowHeroBanners_none: RowHeroBannerWhereInput
+  rowProductMultiple_every: RowProductWhereInput
+  rowProductMultiple_some: RowProductWhereInput
+  rowProductMultiple_none: RowProductWhereInput
+  rowSpecialBanners_every: RowSpecialBannerWhereInput
+  rowSpecialBanners_some: RowSpecialBannerWhereInput
+  rowSpecialBanners_none: RowSpecialBannerWhereInput
+  rowLinks_every: RowLinksWhereInput
+  rowLinks_some: RowLinksWhereInput
+  rowLinks_none: RowLinksWhereInput
+  footerSocialLinks_every: FooterWhereInput
+  footerSocialLinks_some: FooterWhereInput
+  footerSocialLinks_none: FooterWhereInput
+  uspsMultiple_every: UspsWhereInput
+  uspsMultiple_some: UspsWhereInput
+  uspsMultiple_none: UspsWhereInput
+  rowServiceOptionsMultiple_every: RowServiceOptionsWhereInput
+  rowServiceOptionsMultiple_some: RowServiceOptionsWhereInput
+  rowServiceOptionsMultiple_none: RowServiceOptionsWhereInput
+  rowContentLinks: RowContentLinksWhereInput
+  footerLegalLinks_every: FooterWhereInput
+  footerLegalLinks_some: FooterWhereInput
+  footerLegalLinks_none: FooterWhereInput
+  asset: AssetWhereInput
+}
+
+"""References PageLink record uniquely"""
+input PageLinkWhereUniqueInput {
+  id: ID
+}
+
+enum PageOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  url_ASC
+  url_DESC
+  title_ASC
+  title_DESC
+  metaTitle_ASC
+  metaTitle_DESC
+  metaDescription_ASC
+  metaDescription_DESC
+  date_ASC
+  date_DESC
+  author_ASC
+  author_DESC
+  metaRobots_ASC
+  metaRobots_DESC
+}
+
+"""Identifies documents"""
+input PageWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [PageWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [PageWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PageWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  url: String
+  """Any other value that exists and is not equal to the given value."""
+  url_not: String
+  """All values that are contained in given list."""
+  url_in: [String]
+  """All values that are not contained in given list."""
+  url_not_in: [String]
+  """All values containing the given string."""
+  url_contains: String
+  """All values not containing the given string."""
+  url_not_contains: String
+  """All values starting with the given string."""
+  url_starts_with: String
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+  """All values ending with the given string."""
+  url_ends_with: String
+  """All values not ending with the given string"""
+  url_not_ends_with: String
+  title: String
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String]
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+  metaTitle: String
+  """Any other value that exists and is not equal to the given value."""
+  metaTitle_not: String
+  """All values that are contained in given list."""
+  metaTitle_in: [String]
+  """All values that are not contained in given list."""
+  metaTitle_not_in: [String]
+  """All values containing the given string."""
+  metaTitle_contains: String
+  """All values not containing the given string."""
+  metaTitle_not_contains: String
+  """All values starting with the given string."""
+  metaTitle_starts_with: String
+  """All values not starting with the given string."""
+  metaTitle_not_starts_with: String
+  """All values ending with the given string."""
+  metaTitle_ends_with: String
+  """All values not ending with the given string"""
+  metaTitle_not_ends_with: String
+  metaDescription: String
+  """Any other value that exists and is not equal to the given value."""
+  metaDescription_not: String
+  """All values that are contained in given list."""
+  metaDescription_in: [String]
+  """All values that are not contained in given list."""
+  metaDescription_not_in: [String]
+  """All values containing the given string."""
+  metaDescription_contains: String
+  """All values not containing the given string."""
+  metaDescription_not_contains: String
+  """All values starting with the given string."""
+  metaDescription_starts_with: String
+  """All values not starting with the given string."""
+  metaDescription_not_starts_with: String
+  """All values ending with the given string."""
+  metaDescription_ends_with: String
+  """All values not ending with the given string"""
+  metaDescription_not_ends_with: String
+  date: DateTime
+  """Any other value that exists and is not equal to the given value."""
+  date_not: DateTime
+  """All values that are contained in given list."""
+  date_in: [DateTime]
+  """All values that are not contained in given list."""
+  date_not_in: [DateTime]
+  """All values less than the given value."""
+  date_lt: DateTime
+  """All values less than or equal the given value."""
+  date_lte: DateTime
+  """All values greater than the given value."""
+  date_gt: DateTime
+  """All values greater than or equal the given value."""
+  date_gte: DateTime
+  author: String
+  """Any other value that exists and is not equal to the given value."""
+  author_not: String
+  """All values that are contained in given list."""
+  author_in: [String]
+  """All values that are not contained in given list."""
+  author_not_in: [String]
+  """All values containing the given string."""
+  author_contains: String
+  """All values not containing the given string."""
+  author_not_contains: String
+  """All values starting with the given string."""
+  author_starts_with: String
+  """All values not starting with the given string."""
+  author_not_starts_with: String
+  """All values ending with the given string."""
+  author_ends_with: String
+  """All values not ending with the given string"""
+  author_not_ends_with: String
+  asset: AssetWhereInput
+  relatedPages_every: PageWhereInput
+  relatedPages_some: PageWhereInput
+  relatedPages_none: PageWhereInput
+  childPages_every: PageWhereInput
+  childPages_some: PageWhereInput
+  childPages_none: PageWhereInput
+  rowButtonLinkLists_every: RowButtonLinkListWhereInput
+  rowButtonLinkLists_some: RowButtonLinkListWhereInput
+  rowButtonLinkLists_none: RowButtonLinkListWhereInput
+  metaRobots: MetaRobots
+  """Any other value that exists and is not equal to the given value."""
+  metaRobots_not: MetaRobots
+  """All values that are contained in given list."""
+  metaRobots_in: [MetaRobots]
+  """All values that are not contained in given list."""
+  metaRobots_not_in: [MetaRobots]
+  """All values in which the union is empty"""
+  content_empty: Boolean
+  """
+  Matches if the union contains at least one connection to the provided item to the filter
+  """
+  content_some: PageContentWhereInput
+}
+
+"""References Page record uniquely"""
+input PageWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  """Fetches an object given its ID"""
+  entities(
+    """The where parameters to query components"""
+    where: [EntityWhereInput!]!
+  ): [Entity!]
+  """Retrieve multiple rowServiceOptionsMultiple"""
+  rowServiceOptionsMultiple(where: RowServiceOptionsWhereInput, orderBy: RowServiceOptionsOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowServiceOptions!]!
+  """Retrieve a single rowServiceOptions"""
+  rowServiceOptions(where: RowServiceOptionsWhereUniqueInput!, stage: Stage! = PUBLISHED): RowServiceOptions
+  """
+  Retrieve multiple rowServiceOptionsMultiple using the Relay connection interface
+  """
+  rowServiceOptionsMultipleConnection(where: RowServiceOptionsWhereInput, orderBy: RowServiceOptionsOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowServiceOptionsConnection!
+  """Retrieve multiple footers"""
+  footers(where: FooterWhereInput, orderBy: FooterOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [Footer!]!
+  """Retrieve a single footer"""
+  footer(where: FooterWhereUniqueInput!, stage: Stage! = PUBLISHED): Footer
+  """Retrieve multiple footers using the Relay connection interface"""
+  footersConnection(where: FooterWhereInput, orderBy: FooterOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): FooterConnection!
+  """Retrieve multiple rowQuotes"""
+  rowQuotes(where: RowQuoteWhereInput, orderBy: RowQuoteOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowQuote!]!
+  """Retrieve a single rowQuote"""
+  rowQuote(where: RowQuoteWhereUniqueInput!, stage: Stage! = PUBLISHED): RowQuote
+  """Retrieve multiple rowQuotes using the Relay connection interface"""
+  rowQuotesConnection(where: RowQuoteWhereInput, orderBy: RowQuoteOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowQuoteConnection!
+  """Retrieve multiple uspsMultiple"""
+  uspsMultiple(where: UspsWhereInput, orderBy: UspsOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [Usps!]!
+  """Retrieve a single usps"""
+  usps(where: UspsWhereUniqueInput!, stage: Stage! = PUBLISHED): Usps
+  """Retrieve multiple uspsMultiple using the Relay connection interface"""
+  uspsMultipleConnection(where: UspsWhereInput, orderBy: UspsOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): UspsConnection!
+  """Retrieve multiple pages"""
+  pages(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [Page!]!
+  """Retrieve a single page"""
+  page(where: PageWhereUniqueInput!, stage: Stage! = PUBLISHED): Page
+  """Retrieve multiple pages using the Relay connection interface"""
+  pagesConnection(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): PageConnection!
+  """Retrieve multiple rowContentLinksMultiple"""
+  rowContentLinksMultiple(where: RowContentLinksWhereInput, orderBy: RowContentLinksOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowContentLinks!]!
+  """Retrieve a single rowContentLinks"""
+  rowContentLinks(where: RowContentLinksWhereUniqueInput!, stage: Stage! = PUBLISHED): RowContentLinks
+  """
+  Retrieve multiple rowContentLinksMultiple using the Relay connection interface
+  """
+  rowContentLinksMultipleConnection(where: RowContentLinksWhereInput, orderBy: RowContentLinksOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowContentLinksConnection!
+  """Retrieve multiple dynamicRows"""
+  dynamicRows(where: DynamicRowWhereInput, orderBy: DynamicRowOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [DynamicRow!]!
+  """Retrieve a single dynamicRow"""
+  dynamicRow(where: DynamicRowWhereUniqueInput!, stage: Stage! = PUBLISHED): DynamicRow
+  """Retrieve multiple dynamicRows using the Relay connection interface"""
+  dynamicRowsConnection(where: DynamicRowWhereInput, orderBy: DynamicRowOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): DynamicRowConnection!
+  """Retrieve multiple rowButtonLinkLists"""
+  rowButtonLinkLists(where: RowButtonLinkListWhereInput, orderBy: RowButtonLinkListOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowButtonLinkList!]!
+  """Retrieve a single rowButtonLinkList"""
+  rowButtonLinkList(where: RowButtonLinkListWhereUniqueInput!, stage: Stage! = PUBLISHED): RowButtonLinkList
+  """
+  Retrieve multiple rowButtonLinkLists using the Relay connection interface
+  """
+  rowButtonLinkListsConnection(where: RowButtonLinkListWhereInput, orderBy: RowButtonLinkListOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowButtonLinkListConnection!
+  """Retrieve multiple pageLinks"""
+  pageLinks(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [PageLink!]!
+  """Retrieve a single pageLink"""
+  pageLink(where: PageLinkWhereUniqueInput!, stage: Stage! = PUBLISHED): PageLink
+  """Retrieve multiple pageLinks using the Relay connection interface"""
+  pageLinksConnection(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): PageLinkConnection!
+  """Retrieve multiple rowProductMultiple"""
+  rowProductMultiple(where: RowProductWhereInput, orderBy: RowProductOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowProduct!]!
+  """Retrieve a single rowProduct"""
+  rowProduct(where: RowProductWhereUniqueInput!, stage: Stage! = PUBLISHED): RowProduct
+  """
+  Retrieve multiple rowProductMultiple using the Relay connection interface
+  """
+  rowProductMultipleConnection(where: RowProductWhereInput, orderBy: RowProductOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowProductConnection!
+  """Retrieve multiple rowSpecialBanners"""
+  rowSpecialBanners(where: RowSpecialBannerWhereInput, orderBy: RowSpecialBannerOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowSpecialBanner!]!
+  """Retrieve a single rowSpecialBanner"""
+  rowSpecialBanner(where: RowSpecialBannerWhereUniqueInput!, stage: Stage! = PUBLISHED): RowSpecialBanner
+  """
+  Retrieve multiple rowSpecialBanners using the Relay connection interface
+  """
+  rowSpecialBannersConnection(where: RowSpecialBannerWhereInput, orderBy: RowSpecialBannerOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowSpecialBannerConnection!
+  """Retrieve multiple rowLinksMultiple"""
+  rowLinksMultiple(where: RowLinksWhereInput, orderBy: RowLinksOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowLinks!]!
+  """Retrieve a single rowLinks"""
+  rowLinks(where: RowLinksWhereUniqueInput!, stage: Stage! = PUBLISHED): RowLinks
+  """
+  Retrieve multiple rowLinksMultiple using the Relay connection interface
+  """
+  rowLinksMultipleConnection(where: RowLinksWhereInput, orderBy: RowLinksOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowLinksConnection!
+  """Retrieve multiple rowHeroBanners"""
+  rowHeroBanners(where: RowHeroBannerWhereInput, orderBy: RowHeroBannerOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowHeroBanner!]!
+  """Retrieve a single rowHeroBanner"""
+  rowHeroBanner(where: RowHeroBannerWhereUniqueInput!, stage: Stage! = PUBLISHED): RowHeroBanner
+  """Retrieve multiple rowHeroBanners using the Relay connection interface"""
+  rowHeroBannersConnection(where: RowHeroBannerWhereInput, orderBy: RowHeroBannerOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowHeroBannerConnection!
+  """Retrieve multiple rowColumnTwos"""
+  rowColumnTwos(where: RowColumnTwoWhereInput, orderBy: RowColumnTwoOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowColumnTwo!]!
+  """Retrieve a single rowColumnTwo"""
+  rowColumnTwo(where: RowColumnTwoWhereUniqueInput!, stage: Stage! = PUBLISHED): RowColumnTwo
+  """Retrieve multiple rowColumnTwos using the Relay connection interface"""
+  rowColumnTwosConnection(where: RowColumnTwoWhereInput, orderBy: RowColumnTwoOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowColumnTwoConnection!
+  """Retrieve multiple rowColumnThrees"""
+  rowColumnThrees(where: RowColumnThreeWhereInput, orderBy: RowColumnThreeOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowColumnThree!]!
+  """Retrieve a single rowColumnThree"""
+  rowColumnThree(where: RowColumnThreeWhereUniqueInput!, stage: Stage! = PUBLISHED): RowColumnThree
+  """Retrieve multiple rowColumnThrees using the Relay connection interface"""
+  rowColumnThreesConnection(where: RowColumnThreeWhereInput, orderBy: RowColumnThreeOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowColumnThreeConnection!
+  """Retrieve multiple rowColumnOnes"""
+  rowColumnOnes(where: RowColumnOneWhereInput, orderBy: RowColumnOneOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowColumnOne!]!
+  """Retrieve a single rowColumnOne"""
+  rowColumnOne(where: RowColumnOneWhereUniqueInput!, stage: Stage! = PUBLISHED): RowColumnOne
+  """Retrieve multiple rowColumnOnes using the Relay connection interface"""
+  rowColumnOnesConnection(where: RowColumnOneWhereInput, orderBy: RowColumnOneOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowColumnOneConnection!
+  """Retrieve multiple rowBlogContents"""
+  rowBlogContents(where: RowBlogContentWhereInput, orderBy: RowBlogContentOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): [RowBlogContent!]!
+  """Retrieve a single rowBlogContent"""
+  rowBlogContent(where: RowBlogContentWhereUniqueInput!, stage: Stage! = PUBLISHED): RowBlogContent
+  """Retrieve multiple rowBlogContents using the Relay connection interface"""
+  rowBlogContentsConnection(where: RowBlogContentWhereInput, orderBy: RowBlogContentOrderByInput, skip: Int, first: Int, stage: Stage! = PUBLISHED): RowBlogContentConnection!
+}
+
+"""
+Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values
+"""
+type RichText {
+  """Returns AST representation"""
+  raw: RichTextAST!
+  """Returns HTMl representation"""
+  html: String!
+  """Returns Markdown representation"""
+  markdown: String!
+  """Returns plain-text contents of RichText"""
+  text: String!
+}
+
+"""Slate-compatible RichText AST"""
+scalar RichTextAST
+
+type RowBlogContent implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  content: RichText
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowBlogContentConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowBlogContentEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowBlogContentEdge {
+  """The item at the end of the edge."""
+  node: RowBlogContent!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowBlogContentOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+}
+
+"""Identifies documents"""
+input RowBlogContentWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowBlogContentWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowBlogContentWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowBlogContentWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowBlogContent record uniquely"""
+input RowBlogContentWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowButtonLinkList implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  title: String!
+  links(where: PageWhereInput, orderBy: PageOrderByInput, skip: Int, first: Int): [Page!]!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowButtonLinkListConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowButtonLinkListEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowButtonLinkListEdge {
+  """The item at the end of the edge."""
+  node: RowButtonLinkList!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowButtonLinkListOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+  title_ASC
+  title_DESC
+}
+
+"""Identifies documents"""
+input RowButtonLinkListWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowButtonLinkListWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowButtonLinkListWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowButtonLinkListWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  title: String
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String]
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+  links_every: PageWhereInput
+  links_some: PageWhereInput
+  links_none: PageWhereInput
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowButtonLinkList record uniquely"""
+input RowButtonLinkListWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowColumnOne implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  colOne: RichText!
+  rowColumnOneVariant: RowColumnOneVariants
+  dynamicRows(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+  dynamicRow(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+}
+
+"""A connection to a list of items."""
+type RowColumnOneConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowColumnOneEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowColumnOneEdge {
+  """The item at the end of the edge."""
+  node: RowColumnOne!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowColumnOneOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+  rowColumnOneVariant_ASC
+  rowColumnOneVariant_DESC
+}
+
+enum RowColumnOneVariants {
+  Default
+  Message
+}
+
+"""Identifies documents"""
+input RowColumnOneWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowColumnOneWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowColumnOneWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowColumnOneWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  rowColumnOneVariant: RowColumnOneVariants
+  """Any other value that exists and is not equal to the given value."""
+  rowColumnOneVariant_not: RowColumnOneVariants
+  """All values that are contained in given list."""
+  rowColumnOneVariant_in: [RowColumnOneVariants]
+  """All values that are not contained in given list."""
+  rowColumnOneVariant_not_in: [RowColumnOneVariants]
+  dynamicRows_every: DynamicRowWhereInput
+  dynamicRows_some: DynamicRowWhereInput
+  dynamicRows_none: DynamicRowWhereInput
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+  dynamicRow_every: DynamicRowWhereInput
+  dynamicRow_some: DynamicRowWhereInput
+  dynamicRow_none: DynamicRowWhereInput
+}
+
+"""References RowColumnOne record uniquely"""
+input RowColumnOneWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowColumnThree implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  colOne: RichText!
+  colTwo: RichText!
+  colThree: RichText!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowColumnThreeConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowColumnThreeEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowColumnThreeEdge {
+  """The item at the end of the edge."""
+  node: RowColumnThree!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowColumnThreeOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+}
+
+"""Identifies documents"""
+input RowColumnThreeWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowColumnThreeWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowColumnThreeWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowColumnThreeWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowColumnThree record uniquely"""
+input RowColumnThreeWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowColumnTwo implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  colOne: RichText!
+  colTwo: RichText!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowColumnTwoConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowColumnTwoEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowColumnTwoEdge {
+  """The item at the end of the edge."""
+  node: RowColumnTwo!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowColumnTwoOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+}
+
+"""Identifies documents"""
+input RowColumnTwoWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowColumnTwoWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowColumnTwoWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowColumnTwoWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowColumnTwo record uniquely"""
+input RowColumnTwoWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowContentLinks implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  title: String!
+  contentLinks(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowContentLinksConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowContentLinksEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowContentLinksEdge {
+  """The item at the end of the edge."""
+  node: RowContentLinks!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowContentLinksOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+  title_ASC
+  title_DESC
+}
+
+"""Identifies documents"""
+input RowContentLinksWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowContentLinksWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowContentLinksWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowContentLinksWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  title: String
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String]
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+  contentLinks_every: PageLinkWhereInput
+  contentLinks_some: PageLinkWhereInput
+  contentLinks_none: PageLinkWhereInput
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowContentLinks record uniquely"""
+input RowContentLinksWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowHeroBanner implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  copy: RichText!
+  """Video, landscape"""
+  asset: Asset!
+  pageLinks(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowHeroBannerConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowHeroBannerEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowHeroBannerEdge {
+  """The item at the end of the edge."""
+  node: RowHeroBanner!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowHeroBannerOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+}
+
+"""Identifies documents"""
+input RowHeroBannerWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowHeroBannerWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowHeroBannerWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowHeroBannerWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  asset: AssetWhereInput
+  pageLinks_every: PageLinkWhereInput
+  pageLinks_some: PageLinkWhereInput
+  pageLinks_none: PageLinkWhereInput
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowHeroBanner record uniquely"""
+input RowHeroBannerWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowLinks implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  title: String!
+  rowLinksCopy: RichText
+  pageLinks(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+  linksVariant: RowLinksVariants
+  dynamicRows(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+  dynamicRow(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+}
+
+"""A connection to a list of items."""
+type RowLinksConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowLinksEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowLinksEdge {
+  """The item at the end of the edge."""
+  node: RowLinks!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowLinksOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  publishedAt_ASC
+  publishedAt_DESC
+  identity_ASC
+  identity_DESC
+  title_ASC
+  title_DESC
+  linksVariant_ASC
+  linksVariant_DESC
+}
+
+enum RowLinksVariants {
+  Inline
+  ImageLabelSwiper
+  LogoSwiper
+  Usps
+}
+
+"""Identifies documents"""
+input RowLinksWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowLinksWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowLinksWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowLinksWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  title: String
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String]
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+  pageLinks_every: PageLinkWhereInput
+  pageLinks_some: PageLinkWhereInput
+  pageLinks_none: PageLinkWhereInput
+  linksVariant: RowLinksVariants
+  """Any other value that exists and is not equal to the given value."""
+  linksVariant_not: RowLinksVariants
+  """All values that are contained in given list."""
+  linksVariant_in: [RowLinksVariants]
+  """All values that are not contained in given list."""
+  linksVariant_not_in: [RowLinksVariants]
+  dynamicRows_every: DynamicRowWhereInput
+  dynamicRows_some: DynamicRowWhereInput
+  dynamicRows_none: DynamicRowWhereInput
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+  dynamicRow_every: DynamicRowWhereInput
+  dynamicRow_some: DynamicRowWhereInput
+  dynamicRow_none: DynamicRowWhereInput
+}
+
+"""References RowLinks record uniquely"""
+input RowLinksWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowProduct implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  title: String!
+  productCopy: RichText
+  pageLinks(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+  asset: Asset
+  """Row Product component to render"""
+  variant: RowProductVariants
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowProductConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowProductEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowProductEdge {
+  """The item at the end of the edge."""
+  node: RowProduct!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowProductOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+  title_ASC
+  title_DESC
+  variant_ASC
+  variant_DESC
+}
+
+"""All different kind of possible Row Product components to render"""
+enum RowProductVariants {
+  Backstory
+  Feature
+  FeatureBoxed
+  Grid
+  Related
+  Reviews
+  Specs
+  Upsells
+  Swipeable
+}
+
+"""Identifies documents"""
+input RowProductWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowProductWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowProductWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowProductWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  title: String
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String]
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+  pageLinks_every: PageLinkWhereInput
+  pageLinks_some: PageLinkWhereInput
+  pageLinks_none: PageLinkWhereInput
+  asset: AssetWhereInput
+  variant: RowProductVariants
+  """Any other value that exists and is not equal to the given value."""
+  variant_not: RowProductVariants
+  """All values that are contained in given list."""
+  variant_in: [RowProductVariants]
+  """All values that are not contained in given list."""
+  variant_not_in: [RowProductVariants]
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowProduct record uniquely"""
+input RowProductWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowQuote implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  quote: RichText!
+  dynamicRows(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+  dynamicRow(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+}
+
+"""A connection to a list of items."""
+type RowQuoteConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowQuoteEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowQuoteEdge {
+  """The item at the end of the edge."""
+  node: RowQuote!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowQuoteOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+}
+
+"""Identifies documents"""
+input RowQuoteWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowQuoteWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowQuoteWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowQuoteWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  dynamicRows_every: DynamicRowWhereInput
+  dynamicRows_some: DynamicRowWhereInput
+  dynamicRows_none: DynamicRowWhereInput
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+  dynamicRow_every: DynamicRowWhereInput
+  dynamicRow_some: DynamicRowWhereInput
+  dynamicRow_none: DynamicRowWhereInput
+}
+
+"""References RowQuote record uniquely"""
+input RowQuoteWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowServiceOptions implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  title: String!
+  serviceOptions(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowServiceOptionsConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowServiceOptionsEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowServiceOptionsEdge {
+  """The item at the end of the edge."""
+  node: RowServiceOptions!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowServiceOptionsOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+  title_ASC
+  title_DESC
+}
+
+"""Identifies documents"""
+input RowServiceOptionsWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowServiceOptionsWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowServiceOptionsWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowServiceOptionsWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  title: String
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String]
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+  serviceOptions_every: PageLinkWhereInput
+  serviceOptions_some: PageLinkWhereInput
+  serviceOptions_none: PageLinkWhereInput
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowServiceOptions record uniquely"""
+input RowServiceOptionsWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+type RowSpecialBanner implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """System Locale field"""
+  locale: Locale!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  topic: String
+  copy: RichText!
+  asset: Asset
+  pageLinks(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+  dynamicRowsTarget(where: DynamicRowWhereInput, skip: Int, first: Int): [DynamicRow!]!
+  pages(where: PageWhereInput, skip: Int, first: Int): [Page!]!
+}
+
+"""A connection to a list of items."""
+type RowSpecialBannerConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [RowSpecialBannerEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type RowSpecialBannerEdge {
+  """The item at the end of the edge."""
+  node: RowSpecialBanner!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum RowSpecialBannerOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+  topic_ASC
+  topic_DESC
+}
+
+"""Identifies documents"""
+input RowSpecialBannerWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [RowSpecialBannerWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [RowSpecialBannerWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [RowSpecialBannerWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  topic: String
+  """Any other value that exists and is not equal to the given value."""
+  topic_not: String
+  """All values that are contained in given list."""
+  topic_in: [String]
+  """All values that are not contained in given list."""
+  topic_not_in: [String]
+  """All values containing the given string."""
+  topic_contains: String
+  """All values not containing the given string."""
+  topic_not_contains: String
+  """All values starting with the given string."""
+  topic_starts_with: String
+  """All values not starting with the given string."""
+  topic_not_starts_with: String
+  """All values ending with the given string."""
+  topic_ends_with: String
+  """All values not ending with the given string"""
+  topic_not_ends_with: String
+  asset: AssetWhereInput
+  pageLinks_every: PageLinkWhereInput
+  pageLinks_some: PageLinkWhereInput
+  pageLinks_none: PageLinkWhereInput
+  dynamicRowsTarget_every: DynamicRowWhereInput
+  dynamicRowsTarget_some: DynamicRowWhereInput
+  dynamicRowsTarget_none: DynamicRowWhereInput
+  pages_every: PageWhereInput
+  pages_some: PageWhereInput
+  pages_none: PageWhereInput
+}
+
+"""References RowSpecialBanner record uniquely"""
+input RowSpecialBannerWhereUniqueInput {
+  id: ID
+  identity: String
+}
+
+"""Scheduled Operation system model"""
+type ScheduledOperation implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """
+  Raw operation payload including all details, this field is subject to change
+  """
+  rawPayload: Json!
+  """Operation error message"""
+  errorMessage: String
+  """Operation description"""
+  description: String
+  """The unique identifier"""
+  id: ID!
+  """The release this operation is scheduled for"""
+  release: ScheduledRelease
+  """operation Status"""
+  status: ScheduledOperationStatus!
+  affectedDocuments(skip: Int, first: Int): [ScheduledOperationAffectedDocument!]!
+}
+
+union ScheduledOperationAffectedDocument = Asset | DynamicRow | Footer | Page | PageLink | RowBlogContent | RowButtonLinkList | RowColumnOne | RowColumnThree | RowColumnTwo | RowContentLinks | RowHeroBanner | RowLinks | RowProduct | RowQuote | RowServiceOptions | RowSpecialBanner | Usps
+
+enum ScheduledOperationOrderByInput {
+  errorMessage_ASC
+  errorMessage_DESC
+  description_ASC
+  description_DESC
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  status_ASC
+  status_DESC
+}
+
+"""System Scheduled Operation Status"""
+enum ScheduledOperationStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+  CANCELED
+}
+
+"""Identifies documents"""
+input ScheduledOperationWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [ScheduledOperationWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ScheduledOperationWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ScheduledOperationWhereInput!]
+  """All values containing the given json path."""
+  rawPayload_json_path_exists: String
+  """
+  Recursively tries to find the provided JSON scalar value inside the field.
+  It does use an exact match when comparing values.
+  If you pass `null` as value the filter will be ignored. 
+  Note: This filter fails if you try to look for a non scalar JSON value!
+  """
+  rawPayload_value_recursive: Json
+  errorMessage: String
+  """Any other value that exists and is not equal to the given value."""
+  errorMessage_not: String
+  """All values that are contained in given list."""
+  errorMessage_in: [String]
+  """All values that are not contained in given list."""
+  errorMessage_not_in: [String]
+  """All values containing the given string."""
+  errorMessage_contains: String
+  """All values not containing the given string."""
+  errorMessage_not_contains: String
+  """All values starting with the given string."""
+  errorMessage_starts_with: String
+  """All values not starting with the given string."""
+  errorMessage_not_starts_with: String
+  """All values ending with the given string."""
+  errorMessage_ends_with: String
+  """All values not ending with the given string"""
+  errorMessage_not_ends_with: String
+  description: String
+  """Any other value that exists and is not equal to the given value."""
+  description_not: String
+  """All values that are contained in given list."""
+  description_in: [String]
+  """All values that are not contained in given list."""
+  description_not_in: [String]
+  """All values containing the given string."""
+  description_contains: String
+  """All values not containing the given string."""
+  description_not_contains: String
+  """All values starting with the given string."""
+  description_starts_with: String
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+  """All values ending with the given string."""
+  description_ends_with: String
+  """All values not ending with the given string"""
+  description_not_ends_with: String
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  release: ScheduledReleaseWhereInput
+  status: ScheduledOperationStatus
+  """Any other value that exists and is not equal to the given value."""
+  status_not: ScheduledOperationStatus
+  """All values that are contained in given list."""
+  status_in: [ScheduledOperationStatus]
+  """All values that are not contained in given list."""
+  status_not_in: [ScheduledOperationStatus]
+}
+
+"""Scheduled Release system model"""
+type ScheduledRelease implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """Release date and time"""
+  releaseAt: DateTime
+  """Whether scheduled release is implicit"""
+  isImplicit: Boolean!
+  """Whether scheduled release should be run"""
+  isActive: Boolean!
+  """Release error message"""
+  errorMessage: String
+  """Release description"""
+  description: String
+  """Release Title"""
+  title: String
+  """The unique identifier"""
+  id: ID!
+  """Operations to run with this release"""
+  operations(where: ScheduledOperationWhereInput, orderBy: ScheduledOperationOrderByInput, skip: Int, first: Int): [ScheduledOperation!]!
+  """Release Status"""
+  status: ScheduledReleaseStatus!
+}
+
+"""System Scheduled Release Status"""
+enum ScheduledReleaseStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+"""Identifies documents"""
+input ScheduledReleaseWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [ScheduledReleaseWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [ScheduledReleaseWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ScheduledReleaseWhereInput!]
+  releaseAt: DateTime
+  """Any other value that exists and is not equal to the given value."""
+  releaseAt_not: DateTime
+  """All values that are contained in given list."""
+  releaseAt_in: [DateTime]
+  """All values that are not contained in given list."""
+  releaseAt_not_in: [DateTime]
+  """All values less than the given value."""
+  releaseAt_lt: DateTime
+  """All values less than or equal the given value."""
+  releaseAt_lte: DateTime
+  """All values greater than the given value."""
+  releaseAt_gt: DateTime
+  """All values greater than or equal the given value."""
+  releaseAt_gte: DateTime
+  isImplicit: Boolean
+  """Any other value that exists and is not equal to the given value."""
+  isImplicit_not: Boolean
+  isActive: Boolean
+  """Any other value that exists and is not equal to the given value."""
+  isActive_not: Boolean
+  errorMessage: String
+  """Any other value that exists and is not equal to the given value."""
+  errorMessage_not: String
+  """All values that are contained in given list."""
+  errorMessage_in: [String]
+  """All values that are not contained in given list."""
+  errorMessage_not_in: [String]
+  """All values containing the given string."""
+  errorMessage_contains: String
+  """All values not containing the given string."""
+  errorMessage_not_contains: String
+  """All values starting with the given string."""
+  errorMessage_starts_with: String
+  """All values not starting with the given string."""
+  errorMessage_not_starts_with: String
+  """All values ending with the given string."""
+  errorMessage_ends_with: String
+  """All values not ending with the given string"""
+  errorMessage_not_ends_with: String
+  description: String
+  """Any other value that exists and is not equal to the given value."""
+  description_not: String
+  """All values that are contained in given list."""
+  description_in: [String]
+  """All values that are not contained in given list."""
+  description_not_in: [String]
+  """All values containing the given string."""
+  description_contains: String
+  """All values not containing the given string."""
+  description_not_contains: String
+  """All values starting with the given string."""
+  description_starts_with: String
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+  """All values ending with the given string."""
+  description_ends_with: String
+  """All values not ending with the given string"""
+  description_not_ends_with: String
+  title: String
+  """Any other value that exists and is not equal to the given value."""
+  title_not: String
+  """All values that are contained in given list."""
+  title_in: [String]
+  """All values that are not contained in given list."""
+  title_not_in: [String]
+  """All values containing the given string."""
+  title_contains: String
+  """All values not containing the given string."""
+  title_not_contains: String
+  """All values starting with the given string."""
+  title_starts_with: String
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+  """All values ending with the given string."""
+  title_ends_with: String
+  """All values not ending with the given string"""
+  title_not_ends_with: String
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  operations_every: ScheduledOperationWhereInput
+  operations_some: ScheduledOperationWhereInput
+  operations_none: ScheduledOperationWhereInput
+  status: ScheduledReleaseStatus
+  """Any other value that exists and is not equal to the given value."""
+  status_not: ScheduledReleaseStatus
+  """All values that are contained in given list."""
+  status_in: [ScheduledReleaseStatus]
+  """All values that are not contained in given list."""
+  status_not_in: [ScheduledReleaseStatus]
+}
+
+"""Stage system enumeration"""
+enum Stage {
+  """The Draft is the default stage for all your content."""
+  DRAFT
+  """The Published stage is where you can publish your content to."""
+  PUBLISHED
+}
+
+union Union_row_dynamicRow = RowColumnOne | RowLinks | RowQuote
+
+input Union_row_dynamicRowWhereInput {
+  RowColumnOne: RowColumnOneWhereInput
+  RowLinks: RowLinksWhereInput
+  RowQuote: RowQuoteWhereInput
+}
+
+union Union_rows_dynamicRows = RowColumnOne | RowLinks | RowQuote
+
+input Union_rows_dynamicRowsWhereInput {
+  RowColumnOne: RowColumnOneWhereInput
+  RowLinks: RowLinksWhereInput
+  RowQuote: RowQuoteWhereInput
+}
+
+"""User system model"""
+type User implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """Flag to determine if user is active or not"""
+  isActive: Boolean!
+  """Profile Picture url"""
+  picture: String
+  """The username"""
+  name: String!
+  """The unique identifier"""
+  id: ID!
+  """User Kind. Can be either MEMBER, PAT or PUBLIC"""
+  kind: UserKind!
+}
+
+"""System User Kind"""
+enum UserKind {
+  MEMBER
+  PAT
+  PUBLIC
+  WEBHOOK
+}
+
+type Usps implements Node & Entity {
+  """System stage field"""
+  stage: Stage!
+  """The unique identifier"""
+  id: ID!
+  identity: String!
+  uspsMultiple(where: PageLinkWhereInput, orderBy: PageLinkOrderByInput, skip: Int, first: Int): [PageLink!]!
+}
+
+"""A connection to a list of items."""
+type UspsConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+  """A list of edges."""
+  edges: [UspsEdge!]!
+  aggregate: Aggregate!
+}
+
+"""An edge in a connection."""
+type UspsEdge {
+  """The item at the end of the edge."""
+  node: Usps!
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UspsOrderByInput {
+  publishedAt_ASC
+  publishedAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  identity_ASC
+  identity_DESC
+}
+
+"""Identifies documents"""
+input UspsWhereInput {
+  """Contains search across all appropriate fields."""
+  _search: String
+  """Logical AND on all given filters."""
+  AND: [UspsWhereInput!]
+  """Logical OR on all given filters."""
+  OR: [UspsWhereInput!]
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UspsWhereInput!]
+  id: ID
+  """Any other value that exists and is not equal to the given value."""
+  id_not: ID
+  """All values that are contained in given list."""
+  id_in: [ID]
+  """All values that are not contained in given list."""
+  id_not_in: [ID]
+  """All values containing the given string."""
+  id_contains: ID
+  """All values not containing the given string."""
+  id_not_contains: ID
+  """All values starting with the given string."""
+  id_starts_with: ID
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+  """All values ending with the given string."""
+  id_ends_with: ID
+  """All values not ending with the given string"""
+  id_not_ends_with: ID
+  identity: String
+  """Any other value that exists and is not equal to the given value."""
+  identity_not: String
+  """All values that are contained in given list."""
+  identity_in: [String]
+  """All values that are not contained in given list."""
+  identity_not_in: [String]
+  """All values containing the given string."""
+  identity_contains: String
+  """All values not containing the given string."""
+  identity_not_contains: String
+  """All values starting with the given string."""
+  identity_starts_with: String
+  """All values not starting with the given string."""
+  identity_not_starts_with: String
+  """All values ending with the given string."""
+  identity_ends_with: String
+  """All values not ending with the given string"""
+  identity_not_ends_with: String
+  uspsMultiple_every: PageLinkWhereInput
+  uspsMultiple_some: PageLinkWhereInput
+  uspsMultiple_none: PageLinkWhereInput
+}
+
+"""References Usps record uniquely"""
+input UspsWhereUniqueInput {
+  id: ID
+  identity: String
+}
